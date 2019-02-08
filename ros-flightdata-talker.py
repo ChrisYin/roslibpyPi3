@@ -3,13 +3,13 @@ import time
 import roslibpy
 from roslibpy import Message
 
-client = roslibpy.Ros(host='localhost', port=9090)
+client = roslibpy.Ros(host='172.28.229.228', port=9090)
 talker = roslibpy.Topic(client, '/flightdata', 'flightdata/att')
 
 
 def start_talking():
     while client.is_connected:
-        talker.publish(roslibpy.Message({'roll': 21.0, 'pitch': 22.0, 'yaw': 21.0}))
+        talker.publish(roslibpy.Message({'roll': 21.33, 'pitch': 22.44, 'yaw': 21.44}))
         print('Sending message...')
         time.sleep(1)
 
