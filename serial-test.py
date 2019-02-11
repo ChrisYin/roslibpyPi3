@@ -11,9 +11,9 @@ while 1 :
     line = line.rstrip()
     # print line
     # print(line)
-    att=line.split(" ")
+    att=line.split()
     #print(len(att))
-    print("roll: "+att[0]+"   pitch: "+att[1]+"   roll: "+att[2])
+    print("roll: %f"%(float(att[0]))+"  pitch: %f"%(float(att[1]))+"  yaw: %f"%(float(att[2])))
 
 # close port 
 ser.close() 
