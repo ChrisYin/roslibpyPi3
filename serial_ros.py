@@ -21,7 +21,7 @@ def start_talking():
 
         talker.publish(roslibpy.Message({'roll': int(att[0]), 'pitch': int(att[1]), 'yaw': int(att[2])}))
         print('Sending message...')
-        time.sleep(1)
+        #time.sleep(1)
     #Unregister as a publisher for the topic
     talker.unadvertise()
 
