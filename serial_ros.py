@@ -19,7 +19,7 @@ def start_talking():
         # print(line)
         att=line.split()
 
-        talker.publish(roslibpy.Message({'roll': float(att[0]), 'pitch': float(att[1]), 'yaw': float(att[2])}))
+        talker.publish(roslibpy.Message({'roll': int(att[0]), 'pitch': int(att[1]), 'yaw': int(att[2])}))
         print('Sending message...')
         time.sleep(1)
     #Unregister as a publisher for the topic
