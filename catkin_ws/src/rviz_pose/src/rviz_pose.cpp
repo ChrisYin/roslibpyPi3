@@ -11,7 +11,10 @@
 ros::Publisher pose_pub;
 
 void dataCallback(const rviz_pose::att::ConstPtr &msg) {
-    //ROS_INFO("roll: %f pitch: %f yaw: %f", msg->roll, msg->pitch, msg->yaw);
+    msg->roll/=100;
+    msg->pitch/=100;
+    msg->yaw/=100;
+    ROS_INFO("roll: %f pitch: %f yaw: %f", msg->roll, msg->pitch, msg->yaw);
 
     tf2::Quaternion attitude;
 
