@@ -10,6 +10,7 @@ project(rviz_pose)
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   roscpp
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -46,11 +47,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+   FILES
+   att.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -67,10 +67,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   geometry_msgs
-# )
+generate_messages(
+   DEPENDENCIES
+   geometry_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -104,7 +104,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES rviz_pose
-#  CATKIN_DEPENDS geometry_msgs roscpp
+   CATKIN_DEPENDS message_runtime
 #  DEPENDS system_lib
 )
 
@@ -133,6 +133,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/rviz_pose_node.cpp)
+add_executable(rviz_pose_test src/rviz_pose_test.cpp)
 add_executable(rviz_pose src/rviz_pose.cpp)
 
 ## Rename C++ executable without prefix
@@ -150,7 +151,7 @@ add_executable(rviz_pose src/rviz_pose.cpp)
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(rviz_pose ${catkin_LIBRARIES})
-
+target_link_libraries(rviz_pose_test ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############
