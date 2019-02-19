@@ -6,7 +6,7 @@ from roslibpy import Message
 client = roslibpy.Ros(host='172.28.229.228', port=9090)
 talker = roslibpy.Topic(client, '/flightdata', 'flightdata/att')
 
-ser = serial.Serial('/dev/serial0', 115200, timeout=None)
+ser = serial.Serial('/dev/serial0', 115200, timeout=2)
 
 # check which port was really used
 print(ser.name)
