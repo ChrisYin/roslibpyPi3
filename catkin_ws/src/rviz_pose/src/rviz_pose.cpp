@@ -11,28 +11,28 @@
 ros::Publisher pose_pub;
 
 void dataCallback(const rviz_pose::att::ConstPtr &msg) {
-    msg->roll/=100;
-    msg->pitch/=100;
-    msg->yaw/=100;
-    ROS_INFO("roll: %f pitch: %f yaw: %f", msg->roll, msg->pitch, msg->yaw);
+  float roll = msg->roll / 100;
+  float pitch = msg->pitch / 100;
+  float yaw = msg->yaw / 100;
+  ROS_INFO("roll: %f pitch: %f yaw: %f", msg->roll, msg->pitch, msg->yaw);
 
-    tf2::Quaternion attitude;
+  tf2::Quaternion attitude;
 
-    geometry_msgs::PoseStamped pose;
-    pose.header.frame_id = "my_drone";
-    pose.header.stamp = ros::Time::now();
+  geometry_msgs::PoseStamped pose;
+  pose.header.frame_id = "my_drone";
+  pose.header.stamp = ros::Time::now();
 
-    attitude.setRPY(PI * msg->roll / 180, PI * msg->pitch / 180, PI * msg->yaw / 180);
+  attitude.setRPY(PI * roll / 180, PI * pitch / 180, PI * yaw / 180);
 
-    pose.pose.position.x = 0;
-    pose.pose.position.y = 0;
-    pose.pose.position.z = 0;
-    pose.pose.orientation.x = attitude[0];
-    pose.pose.orientation.y = attitude[1];
-    pose.pose.orientation.z = attitude[2];
-    pose.pose.orientation.w = attitude[3];
-
-    pose_pub.publish(pose);
+  pose.pose.position.x = 0;
+  pose.pose.position.y = 0;
+  pose.pose.position.z = 0;
+  pose.pose.orientation.x = attitude[0];
+  pose.pose.orientation.y = attitude[1];
+  pose.pose.orientation.z = attitude[2];
+  pose.pose.orientation.w = attitude[3];
+  
+  pose_pub.publish(pose);
 }
 
 
